@@ -6,6 +6,8 @@ var intv;
 var character;
 var grav = 9;
 var bounce_value = 0;
+var imgEnemy = new Image();
+imgEnemy.src = 'images/MALE-HEAD.png'
 
 var game = new Game();
 
@@ -30,20 +32,27 @@ score = new Kinetic.Text({
     fontSize: 20
 });
 
-function nivelUno() {
+function firstLevel() {
     game.score = 0;
+    game.key = true;
     background = new Kinetic.Layer();
 
     /* Enemies */
-    gAssets.add(new Enemy(200, stage.getHeight()-75));
-    gAssets.add(new Enemy(850, stage.getHeight()-75));
+    gAssets.add(new Enemy(200, stage.getHeight()-75, imgEnemy));
+    gAssets.add(new Enemy(850, stage.getHeight()-75, imgEnemy));
 
     /* Platforms */
-    var floor = new Platform(0, stage.getHeight()-20);
+    var floor = new Platform(0, stage.getHeight()-15);
     floor.setWidth(stage.getWidth()*2);
     gAssets.add(floor);
     gAssets.add(new Platform(20, stage.getHeight()/1.5));
     gAssets.add(new Platform(190, stage.getHeight()/3));
+
+    /* Coins */
+    gAssets.add(new Coin(350, stage.getHeight()/3-130));
+
+    /* Door */
+    gAssets.add(new Door(910, stage.getHeight()-85));
 
     character = new Heroe();
     character.setX(0);
@@ -54,6 +63,12 @@ function nivelUno() {
     background.add(gAssets);
     background.add(score);
     stage.add(background);
+
+    intv = setInterval(frameLoop, 1000/20);
+}
+
+function secondLevel() {
+    console.log('Bienvenido al segundo nivel.');
 }
 
 function moveCharacter() {
@@ -144,6 +159,14 @@ function checkCollPlat(){
                 character.setY(platform.getY() - character.getHeight());
                 character.vy *= bounce_value;
             }
+            else if(platform instanceof Coin) {
+                platform.remove();
+                game.score += 1;
+            }
+            else if(platform instanceof Door && game.key) {
+                if(game.level == 1) secondLevel();
+                if(game.level == 2) console.log('Ganaste papu.');
+            }
         }
     }
 }
@@ -153,8 +176,6 @@ function updateText () {
 }
 
 addKeyBoardEvents();
-nivelUno();
-intv = setInterval(frameLoop, 1000/20);
 function frameLoop () {
     applyForces();
     updateText();

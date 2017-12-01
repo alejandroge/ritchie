@@ -1,11 +1,11 @@
-function Enemy(x, y){
-    Kinetic.Rect.call(this);
-    this.setWidth(40);
+function Enemy(x, y, img){
+    Kinetic.Image.call(this);
+    this.setWidth(60);
     this.setHeight(60);
     this.setX(x);
     this.setY(y);
     this.count = 0;
-    this.setFill("blue");
+    this.setImage(img);
     this.random = function(floor, ceiling){
         var probs = ceiling - floor;
         var random = Math.random() * probs;
@@ -17,4 +17,4 @@ function Enemy(x, y){
         this.setX(this.getX() + Math.sin(this.count*Math.PI/50)*5);
     }
 };
-Enemy.prototype = Object.create(Kinetic.Rect.prototype);
+Enemy.prototype = Object.create(Kinetic.Image.prototype);
