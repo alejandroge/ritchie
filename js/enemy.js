@@ -1,7 +1,7 @@
 function Enemy(x, y, img){
     Kinetic.Image.call(this);
     this.setWidth(60);
-    this.setHeight(60);
+    this.setHeight(80);
     this.setX(x);
     this.setY(y);
     this.count = 0;

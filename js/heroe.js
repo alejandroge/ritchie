@@ -1,14 +1,14 @@
-function Heroe(){
-    Kinetic.Rect.call(this);
+function Heroe(img){
+    Kinetic.Image.call(this);
     this.setWidth(40);
-    this.setHeight(70);
+    this.setHeight(80);
     this.vx = 15;
     this.vy = 0;
     this.rightLimit = 0;
     this.topLimit = 0;
     this.direccion = 1;
     this.count = 0;
-    this.setFill("red");
+    this.setImage(img);
     this.walkForward = function(){
         this.move(this.vx, 0);
         if(this.getX() > this.rightLimit)
@@ -33,4 +33,4 @@ function Heroe(){
         }
     }
 }
-Heroe.prototype = Object.create(Kinetic.Rect.prototype);
+Heroe.prototype = Object.create(Kinetic.Image.prototype);

@@ -7,7 +7,9 @@ var character;
 var grav = 9;
 var bounce_value = 0;
 var imgEnemy = new Image();
+var imgHeroe = new Image();
 imgEnemy.src = 'images/MALE-HEAD.png'
+imgHeroe.src = 'images/FEMALE-BODY.png'
 
 var game = new Game();
 
@@ -38,8 +40,8 @@ function firstLevel() {
     background = new Kinetic.Layer();
 
     /* Enemies */
-    gAssets.add(new Enemy(200, stage.getHeight()-75, imgEnemy));
-    gAssets.add(new Enemy(850, stage.getHeight()-75, imgEnemy));
+    gAssets.add(new Enemy(200, stage.getHeight()-95, imgEnemy));
+    gAssets.add(new Enemy(850, stage.getHeight()-95, imgEnemy));
 
     /* Platforms */
     var floor = new Platform(0, stage.getHeight()-15);
@@ -54,11 +56,11 @@ function firstLevel() {
     /* Door */
     gAssets.add(new Door(910, stage.getHeight()-85));
 
-    character = new Heroe();
+    character = new Heroe(imgHeroe);
     character.setX(0);
     character.setY(stage.getHeight()-character.getHeight());
     character.rightLimit = stage.getWidth() - character.getWidth();
-    character.topLimit = stage.getHeight();
+    character.topLimit = stage.getHeight()-15;
     background.add(character);
     background.add(gAssets);
     background.add(score);
@@ -147,9 +149,9 @@ function checkCollPlat(){
         if(collision(platform, character)){
             if(platform instanceof Enemy) {
                 if(character.vy > 2 && character.getY()<platform.getY()){
+                    character.vy *= -0.8;
                     platform.remove();
                     game.score += 5;
-                    console.log(game.score);
                 }else {
                     console.log("Fin del juego");
                 }
