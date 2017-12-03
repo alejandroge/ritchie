@@ -4,6 +4,7 @@ function Platform(x, y){
     this.setHeight(40);
     this.setX(x);
     this.setY(y);
-    this.setFill("black");
+    this.setFill("BlanchedAlmond");
+    this.setStroke("#DDE9AB");
 };
 Platform.prototype = Object.create(Kinetic.Rect.prototype);

@@ -1,16 +1,16 @@
 function Heroe(img){
     Kinetic.Image.call(this);
-    this.setWidth(40);
-    this.setHeight(80);
+    this.setWidth(60);
+    this.setHeight(120);
     this.vx = 15;
     this.vy = 0;
     this.rightLimit = 0;
     this.topLimit = 0;
-    this.direccion = 1;
+    this.direction = 1;
     this.count = 0;
     this.setImage(img);
     this.walkForward = function(){
-        if(this.direccion) this.move(this.vx, 0);
+        if(this.direction) this.move(this.vx, 0);
         else {
             this.attrs.drawFunc = function (a) {
                 var b = this.getWidth(), c=this.getHeight(), d,e=this, f=a.getContext();
@@ -24,13 +24,13 @@ function Heroe(img){
                 }
             }
             this.setScale({x: 1});
-            this.direccion = true;
+            this.direction = true;
         }
         if(this.getX() > this.rightLimit)
             this.move(this.rightLimit - this.getX(), 0);
     }
     this.walkBack = function(){
-        if(!this.direccion) this.move(-this.vx, 0);
+        if(!this.direction) this.move(-this.vx, 0);
         else {
             this.attrs.drawFunc = function (a) {
                 var b = this.getWidth(), c=this.getHeight(), d,e=this, f=a.getContext();
@@ -39,19 +39,21 @@ function Heroe(img){
                     if(this.attrs.crop&&this.attrs.crop.width&&this.attrs.crop.height){
                         var g=this.attrs.crop.x||0, h=this.attrs.crop.y||0, i=this.attrs.crop.width, j=this.attrs.crop.height;
                         d=[this.attrs.image,g,h,i,j,-i,0,b,c]
-                    } else d=[this.attrs.image,0,0,b,c];
+                    } else d=[this.attrs.image,0,0,-b,c];
                     this.hasShadow()?a.applyShadow(this,function(){e._drawImage(f,d)}):this._drawImage(f,d)
                 }
             }
             this.setScale({x: -1});
-            this.direccion = false;
+            this.direction = false;
         }
         if(this.getX() < 0)
             this.move(-this.getX(), 0);
     }
     this.jump = function(){
-        this.vy = -60;
-        this.count++;
+        if(this.vy <= 2) {
+            this.vy = -60;
+            this.count++;
+        }
     }
     this.applyGravity = function(gravity, bValue){
         this.vy += gravity;
