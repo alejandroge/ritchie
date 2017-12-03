@@ -6,6 +6,7 @@ var intv;
 var character;
 var grav = 9;
 var bounce_value = 0;
+var flag = false;
 var imgEnemy = new Image();
 var imgHeroe = new Image();
 imgEnemy.src = 'images/MALE-HEAD.png'
@@ -35,6 +36,8 @@ score = new Kinetic.Text({
 });
 
 function firstLevel() {
+    if(flag) return;
+    flag = true;
     game.score = 0;
     game.key = true;
     background = new Kinetic.Layer();
@@ -64,6 +67,7 @@ function firstLevel() {
     background.add(character);
     background.add(gAssets);
     background.add(score);
+    console.log(character);
     stage.add(background);
 
     intv = setInterval(frameLoop, 1000/20);
