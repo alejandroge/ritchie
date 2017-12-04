@@ -4,21 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Jura;400,600" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Black+Ops+One" type="text/css">
     <title>OXXO Game</title>
 </head>
 <body>
     <div id="game">
-
+        <div id="begin" class="screen">
+            <p class="presentation">Un juego de: <span class="logo">The Ritchie's</span></p>
+            <div class="data">
+                <h1>Bienvenido a OXXO Game</h1>
+                <img src="images/MALE-HEAD.png" alt="Male Head">
+                <img src="images/FEMALE-HEAD.png" alt="Female Head">
+                <button type="button" class="btn start" id="other">Iniciar</button>
+            </div>
+        </div>
+    </div>
+    <div id="game">
+        <div id="win" class="screen">
+            <p class="presentation">Un juego de: <span class="logo">The Ritchie's</span></p>
+            <div class="data">
+                <h1>¡Ganaste!</h1>
+                <h3>Felicidades, has vencido el juego</h3>
+                <h6>Puntaje: </h6>
+                <h6 id='score'></h6>
+                <button type="button" class="btn start" id="other">Jugar Otra Vez</button>
+            </div>
+        </div>
+    </div><div id="game">
+        <div id="game-over" class="screen">
+            <p class="presentation">Un juego de: <span class="logo">The Ritchie's</span></p>
+            <div class="data">
+                <h1>Perdiste ... ;(</h1>
+                <p>Pero puedes volver a intentarlo</p>
+                <br>
+                <button type="button" class="btn start" id="other">Jugar Otra Vez</button>
+            </div>
+        </div>
     </div>
     <script src="js/preloadjs-0.1.0.min.js"></script>
     <script src="js/kinetic-v4.3.3.min.js"></script>
-    <script src="js/heroe.js"></script>
-    <script src="js/enemy.js"></script>
-    <script src="js/platform.js"></script>
+    <script src="js/assets/heroe.js"></script>
+    <script src="js/assets/enemy.js"></script>
+    <script src="js/assets/platform.js"></script>
+    <script src="js/assets/coin.js"></script>
+    <script src="js/assets/door.js"></script>
+    <script src="js/levels.js"></script>
     <script src="js/game.js"></script>
-    <script src="js/coin.js"></script>
-    <script src="js/door.js"></script>
-    <script src="js/main.js"></script>
     <script>
         var p;
         var imgAssets = ['images/coin.png','images/cityscape.jpg','images/MALE-BODY.png','images/MALE-HEAD.png', 'images/male.png', 'images/FEMALE-HEAD.png', 'images/FEMALE-BODY.png'];
@@ -26,6 +59,11 @@
             p = new PreloadJS();
             p.onProgress = loadProgress;
             load();
+            var starters = document.getElementsByClassName('start');
+            for (i in starters) {
+                var button = starters[i];
+                button.addEventListener('click', beginGame);
+            }
         });
         function load(){
             while(imgAssets.length > 0){
@@ -35,9 +73,19 @@
         }
         function loadProgress(){
             if(p.progress == 1){
-                firstLevel();
+                //firstLevel();
+                document.querySelector('#begin').style.display = 'block';
             }
         }
+        function beginGame(){
+            document.querySelector('#begin').style.display = 'none';
+            document.querySelector('#win').style.display = 'none';
+            document.querySelector('#game-over').style.display = 'none';
+            document.querySelector('#game').style.display = 'block';
+
+            firstLevel();
+        }
     </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

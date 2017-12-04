@@ -1,0 +1,58 @@
+body {
+    font-family: 'Juna', sans-serif;
+    color: #f7f7f7;
+}
+
+h1 {
+    font-family: 'Black Ops One', cursive;
+    font-size: 3em;
+    font-weight: bolder;
+    color: #ffffff;
+}
+
+.screen {
+    display: none;
+    text-align: center;
+    width: 1280px;
+    height: 600px;
+    background-image: url(../images/cityscape.jpg);
+    background-size: 100% 100%;
+}
+
+p {
+    height: 350px;
+    display: inline-block;
+}
+
+.presentation {
+    height: 600px;
+    line-height: 600px;
+    vertical-align: middle;
+    font-size: 1.5em;
+}
+
+.data {
+    display: inline-block;
+    width: 600px;
+    text-align: center;
+    vertical-align: top;
+}
+
+p span {
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.btn {
+    font-family: 'Jura', sans-serif;
+    font-size: 1.5em;
+    padding: 1em 3em;
+    background-color: #404562;
+    color: #f7f7f7;
+    border: none;
+} .btn:hover {
+    background-color: #f7f7f7;
+    color: #222;
+    cursor: pointer;
+}
