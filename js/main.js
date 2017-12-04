@@ -144,6 +144,7 @@ function checkCollPlat(){
                     document.querySelector('#game-over').style.display = 'block';
                     document.querySelector('#game').style.display = 'none';
                     window.clearInterval(intv);
+                    game.level=1;
                     flag = false;
                 }
             }
