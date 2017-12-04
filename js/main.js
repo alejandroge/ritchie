@@ -175,6 +175,7 @@ function checkCollPlat(){
                     document.querySelector('#game').style.display = 'none';
                     document.querySelector('#score').innerHTML = game.score;
                     window.clearInterval(intv);
+                    game.level=1;
                     flag = false;
                 }
             }
