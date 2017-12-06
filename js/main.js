@@ -8,13 +8,18 @@ var grav = 9;
 var bounce_value = 0;
 var flag = false;
 var imgEnemy = new Image();
-var imgHeroe = new Image();
-var imgBG = new Image();
+var imgMale = new Image();
+var imgFemale = new Image();
+var imgBG_1 = new Image();
+var imgBG_2 = new Image();
+
 var imgCoin = new Image();
-imgEnemy.src = 'images/MALE-BODY.png'
-imgHeroe.src = 'images/FEMALE-BODY.png'
-imgBG.src = 'images/cityscape.jpg'
-imgCoin.src = 'images/coin.png'
+imgEnemy.src = 'images/CHOLO-BODY.png';
+imgMale.src = 'images/MALE-BODY.png';
+imgFemale.src = 'images/FEMALE-BODY.png';
+imgBG_1.src = 'images/bg/cityscape_1.png';
+imgBG_2.src = 'images/bg/cityscape_2.png';
+imgCoin.src = 'images/coin.png';
 
 var game = new Game();
 
@@ -29,10 +34,18 @@ stage = new Kinetic.Stage({
     height: 600
 });
 
-bgImg = new Kinetic.Image({
+bgImg_1 = new Kinetic.Image({
     x: 0,
     y: 0,
-    image: imgBG,
+    image: imgBG_1,
+    width: stage.getWidth(),
+    height: stage.getHeight()
+});
+
+bgImg_2 = new Kinetic.Image({
+    x: 0,
+    y: 0,
+    image: imgBG_2,
     width: stage.getWidth(),
     height: stage.getHeight()
 });
@@ -103,11 +116,11 @@ function collision (a,b) {
 
 function moveBground(){
     if(character.getX() > (stage.getWidth()/2) && keyboard[39]){
-        character.vx = 2;
+        character.vx = 0;
         assets = gAssets.children;
         for(i in assets) {
             var asset = gAssets.children[i];
-            asset.move(-5, 0);
+            asset.move(-8, 0);
         }
     } else {
         character.vx = 10;
@@ -139,7 +152,6 @@ function checkCollPlat(){
                     platform.remove();
                     game.score += 5;
                 }else {
-                    console.log("Fin del juego");
                     gAssets.removeChildren();
                     document.querySelector('#game-over').style.display = 'block';
                     document.querySelector('#game').style.display = 'none';

@@ -12,32 +12,33 @@
 <body>
     <div id="game">
         <div id="begin" class="screen">
-            <p class="presentation">Un juego de: <span class="logo">The Ritchie's</span></p>
+            <p class="presentation">Un juego de <span class="logo">The Ritchie's</span></p>
             <div class="data">
-                <h1>Bienvenido a OXXO Game</h1>
-                <img src="images/MALE-HEAD.png" alt="Male Head">
-                <img src="images/FEMALE-HEAD.png" alt="Female Head">
-                <button type="button" class="btn start" id="other">Iniciar</button>
+                <h2>Bienvenido a OXXO Game</h2>
+                <input type="button" class="botonimagen1" id="btnMale" onclick="beginGame(1)">
+                <input type="button" class="botonimagen2" id="btnFemale" onclick="beginGame(2)">
+                <p>Elije a tu personaje</p>
             </div>
         </div>
     </div>
     <div id="game">
         <div id="win" class="screen">
-            <p class="presentation">Un juego de: <span class="logo">The Ritchie's</span></p>
+            <p class="presentation">Un juego de <span class="logo">The Ritchie's</span></p>
             <div class="data">
-                <h1>¡Ganaste!</h1>
-                <h3>Felicidades, has vencido el juego</h3>
+                <h1 class="notice">¡Ganaste!</h1>
+                <p style="color:#000">¡Felicidades!</p>
                 <h6>Puntaje: </h6>
                 <h6 id='score'></h6>
                 <button type="button" class="btn start" id="other">Jugar Otra Vez</button>
             </div>
         </div>
-    </div><div id="game">
+    </div>
+    <div id="game">
         <div id="game-over" class="screen">
-            <p class="presentation">Un juego de: <span class="logo">The Ritchie's</span></p>
+            <p class="presentation">Un juego de <span class="logo">The Ritchie's</span></p>
             <div class="data">
-                <h1>Perdiste ... ;(</h1>
-                <p>Pero puedes volver a intentarlo</p>
+                <h1 class="notice">Perdiste ... ;(</h1>
+                <p class="notice">Volver a intentarlo?</p>
                 <br>
                 <button type="button" class="btn start" id="other">Jugar Otra Vez</button>
             </div>
@@ -50,11 +51,12 @@
     <script src="js/assets/platform.js"></script>
     <script src="js/assets/coin.js"></script>
     <script src="js/assets/door.js"></script>
+    <script src="js/assets/mof.js"></script>
     <script src="js/levels.js"></script>
     <script src="js/game.js"></script>
     <script>
         var p;
-        var imgAssets = ['images/coin.png','images/cityscape.jpg','images/MALE-BODY.png','images/MALE-HEAD.png', 'images/male.png', 'images/FEMALE-HEAD.png', 'images/FEMALE-BODY.png'];
+        var imgAssets = ['images/CHOLO-BODY.png','images/coin.png','images/bg/cityscape_1.png','images/bg/cityscape_2.png','images/MALE-BODY.png','images/MALE-HEAD.png', 'images/male.png', 'images/FEMALE-HEAD.png', 'images/FEMALE-BODY.png'];
         window.addEventListener('load', function(){
             p = new PreloadJS();
             p.onProgress = loadProgress;
@@ -77,13 +79,13 @@
                 document.querySelector('#begin').style.display = 'block';
             }
         }
-        function beginGame(){
+        function beginGame(x){
             document.querySelector('#begin').style.display = 'none';
             document.querySelector('#win').style.display = 'none';
             document.querySelector('#game-over').style.display = 'none';
             document.querySelector('#game').style.display = 'block';
 
-            firstLevel();
+            firstLevel(x);
         }
     </script>
     <script src="js/main.js"></script>

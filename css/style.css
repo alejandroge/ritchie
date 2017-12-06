@@ -3,7 +3,7 @@ body {
     color: #f7f7f7;
 }
 
-h1 {
+h2 {
     font-family: 'Black Ops One', cursive;
     font-size: 3em;
     font-weight: bolder;
@@ -15,13 +15,17 @@ h1 {
     text-align: center;
     width: 1280px;
     height: 600px;
-    background-image: url(../images/cityscape.jpg);
+    background-image: url(../images/bg/cityscape_1.png);
     background-size: 100% 100%;
 }
 
 p {
+    margin: 0px;
     height: 350px;
     display: inline-block;
+    color: #000;
+} .logo {
+    color: #fff;
 }
 
 .presentation {
@@ -36,6 +40,11 @@ p {
     width: 600px;
     text-align: center;
     vertical-align: top;
+} .data p {
+    margin-top: 10px;
+    height: auto;
+    font-size: 1.5em;
+    color: #ffffff;
 }
 
 p span {
@@ -43,6 +52,15 @@ p span {
     line-height: 50px;
     vertical-align: middle;
 }
+
+h1.notice {
+    margin-top: 150px;
+    margin-bottom: 100px;
+} p.notice {
+    color: #000;
+    margin-bottom: 80px;
+}
+
 
 .btn {
     font-family: 'Jura', sans-serif;
@@ -53,6 +71,40 @@ p span {
     border: none;
 } .btn:hover {
     background-color: #f7f7f7;
+    color: #222;
+    cursor: pointer;
+}
+
+.botonimagen1 {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    background-image: url(../images/MALE-HEAD.png);
+    background: -repeat: no-repeat;
+    height: 255px;
+    width: 255px;
+    background-position: center;
+} .botonimagen1:hover{
+    background-image: url(../images/MALE-HEAD2.jpg);
+    color: #222;
+    cursor: pointer;
+}
+
+.botonimagen2 {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    background-image: url(../images/FEMALE-HEAD.png);
+    background: -repeat: no-repeat;
+    height: 255px;
+    width: 255px;
+    background-position: center;
+} .botonimagen2:hover {
+    background-image: url(../images/FEMALE-HEAD2.jpg);
     color: #222;
     cursor: pointer;
 }

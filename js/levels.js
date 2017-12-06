@@ -1,8 +1,9 @@
-function firstLevel() {
+var Selected = new Heroe(imgMale);
+
+function firstLevel(x) {
     game.score = 0;
     if(flag) return;
     flag = true;
-    game.score = 0;
     game.key = true;
     background = new Kinetic.Layer();
 
@@ -29,13 +30,13 @@ function firstLevel() {
 
     /* Door */
     gAssets.add(new Door(1200, stage.getHeight()-135));
-
-    character = new Heroe(imgHeroe);
+    GetSex(x);
+    Selected = character;
     character.setX(0);
     character.setY(stage.getHeight()-character.getHeight());
     character.rightLimit = stage.getWidth() - character.getWidth();
     character.topLimit = stage.getHeight()-15;
-    background.add(bgImg);
+    background.add(bgImg_1);
     background.add(character);
     background.add(gAssets);
     background.add(score);
@@ -45,6 +46,7 @@ function firstLevel() {
 }
 
 function secondLevel() {
+    character = Selected;
     background = new Kinetic.Layer();
     game.key = true;
     console.log('Bienvenido al segundo nivel.');
@@ -84,39 +86,37 @@ function secondLevel() {
    /* Door */
    gAssets.add(new Door(1970, stage.getHeight()/2.15-120));
 
-    character = new Heroe(imgHeroe);
-    character.setX(0);
-    character.setY(stage.getHeight()-character.getHeight());
-    character.rightLimit = stage.getWidth() - character.getWidth();
-    character.topLimit = stage.getHeight()-15;
-    background.add(bgImg);
-    background.add(character);
-    background.add(gAssets);
-    background.add(score);
-    stage.add(background);
+   character.setX(0);
+   character.setY(stage.getHeight()-character.getHeight());
+   character.rightLimit = stage.getWidth() - character.getWidth();
+   character.topLimit = stage.getHeight()-15;
+   background.add(bgImg_1);
+   background.add(character);
+   background.add(gAssets);
+   background.add(score);
+   stage.add(background);
 
-    intv = setInterval(frameLoop, 1000/20);
+   intv = setInterval(frameLoop, 1000/20);
 }
 
 function thirdLevel() {
+    character = Selected;
     background = new Kinetic.Layer();
     game.key = true;
     console.log('Bienvenido al Ultimo nivel.');
     /* Enemies */
-    gAssets.add(new Enemy(400, stage.getHeight()-135, imgEnemy));
-    gAssets.add(new Enemy(410, stage.getHeight()/3.5-115, imgEnemy));
-    gAssets.add(new Enemy(90, stage.getHeight()/1.5-115, imgEnemy));
-    gAssets.add(new Enemy(100, stage.getHeight()-135, imgEnemy));
-    gAssets.add(new Enemy(610, stage.getHeight()/1.5-115, imgEnemy));
-    gAssets.add(new Enemy(980, stage.getHeight()/1.5-115, imgEnemy));
+    gAssets.add(new Enemy(  90, stage.getHeight()/1.5-115, imgEnemy));
+    gAssets.add(new Enemy( 100, stage.getHeight()-135, imgEnemy));
+    gAssets.add(new Enemy( 400, stage.getHeight()-135, imgEnemy));
+    gAssets.add(new Enemy( 410, stage.getHeight()/3.5-115, imgEnemy));
+    gAssets.add(new Enemy( 610, stage.getHeight()/1.5-115, imgEnemy));
+    gAssets.add(new Enemy( 980, stage.getHeight()/1.5-115, imgEnemy));
     gAssets.add(new Enemy(1100, stage.getHeight()/3.5-115, imgEnemy));
     gAssets.add(new Enemy(1400, stage.getHeight()/3.5-115, imgEnemy));
     gAssets.add(new Enemy(1400, stage.getHeight()-135, imgEnemy));
     gAssets.add(new Enemy(1550, stage.getHeight()/1.5-115, imgEnemy));
     gAssets.add(new Enemy(1850, stage.getHeight()/1.5-115, imgEnemy));
-    gAssets.add(new Enemy(1950, stage.getHeight()/3.5-115, imgEnemy));
     gAssets.add(new Enemy(1950, stage.getHeight()-135, imgEnemy));
-    gAssets.add(new Enemy(1550, stage.getHeight()/1.5-115, imgEnemy));
     gAssets.add(new Enemy(1950, stage.getHeight()/3.5-115, imgEnemy));
     gAssets.add(new Enemy(2100, stage.getHeight()-135, imgEnemy));
     gAssets.add(new Enemy(2350, stage.getHeight()/1.5-115, imgEnemy));
@@ -167,13 +167,11 @@ function thirdLevel() {
     /* Door */
     gAssets.add(new Door(4100, stage.getHeight()/3.5-120));
 
-
-    character = new Heroe(imgHeroe);
     character.setX(0);
     character.setY(stage.getHeight()-character.getHeight());
     character.rightLimit = stage.getWidth() - character.getWidth();
     character.topLimit = stage.getHeight()-15;
-    background.add(bgImg);
+    background.add(bgImg_2);
     background.add(character);
     background.add(gAssets);
     background.add(score);
