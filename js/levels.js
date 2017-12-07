@@ -48,17 +48,17 @@ function secondLevel() {
     console.log('Bienvenido al segundo nivel.');
 
     /* Enemies */
-   gAssets.add(new Enemy(400, stage.getHeight()-128, imgEnemy));
-   gAssets.add(new Enemy(410, stage.getHeight()/3.5-115, imgEnemy));
-   gAssets.add(new Enemy(90, stage.getHeight()/1.5-115, imgEnemy));
-   gAssets.add(new Enemy(610, stage.getHeight()/1.5-115, imgEnemy));
-   gAssets.add(new Enemy(910, stage.getHeight()-128, imgEnemy));
-   gAssets.add(new Enemy(1210, stage.getHeight()-128, imgEnemy));
-   gAssets.add(new Enemy(1410, stage.getHeight()-128, imgEnemy));
-   gAssets.add(new Enemy(810, stage.getHeight()/3.5-128, imgEnemy));
-   gAssets.add(new Enemy(1110, stage.getHeight()/1.5-128, imgEnemy));
-   gAssets.add(new Enemy(1310, stage.getHeight()/3.5-128, imgEnemy));
-   gAssets.add(new Enemy(1610, stage.getHeight()/1.25-150, imgEnemy));
+   gAssets.add(new Enemy(400, stage.getHeight()-135, imgEnemy));
+   gAssets.add(new Enemy(410, stage.getHeight()/3.5-120, imgEnemy));
+   gAssets.add(new Enemy(90, stage.getHeight()/1.5-120, imgEnemy));
+   gAssets.add(new Enemy(610, stage.getHeight()/1.5-120, imgEnemy));
+   gAssets.add(new Enemy(910, stage.getHeight()-135, imgEnemy));
+   gAssets.add(new Enemy(1210, stage.getHeight()-135, imgEnemy));
+   gAssets.add(new Enemy(1410, stage.getHeight()-135, imgEnemy));
+   gAssets.add(new Enemy(810, stage.getHeight()/3.5-120, imgEnemy));
+   gAssets.add(new Enemy(1110, stage.getHeight()/1.5-120, imgEnemy));
+   gAssets.add(new Enemy(1310, stage.getHeight()/3.5-120, imgEnemy));
+   gAssets.add(new Enemy(1610, stage.getHeight()/1.35-120, imgEnemy));
 
    /* Dogs */
    gAssets.add(new Dog(1200, stage.getHeight() - 75, imgDog));
@@ -105,28 +105,28 @@ function thirdLevel() {
     game.key = true;
     console.log('Bienvenido al Ultimo nivel.');
     /* Enemies */
-    gAssets.add(new Enemy(  90, stage.getHeight()/1.5-115, imgEnemy));
+    gAssets.add(new Enemy(  90, stage.getHeight()/1.5-120, imgEnemy));
     gAssets.add(new Enemy( 100, stage.getHeight()-135, imgEnemy));
     gAssets.add(new Enemy( 400, stage.getHeight()-135, imgEnemy));
-    gAssets.add(new Enemy( 410, stage.getHeight()/3.5-115, imgEnemy));
-    gAssets.add(new Enemy( 610, stage.getHeight()/1.5-115, imgEnemy));
-    gAssets.add(new Enemy( 980, stage.getHeight()/1.5-115, imgEnemy));
-    gAssets.add(new Enemy(1100, stage.getHeight()/3.5-115, imgEnemy));
-    gAssets.add(new Enemy(1400, stage.getHeight()/3.5-115, imgEnemy));
+    gAssets.add(new Enemy( 410, stage.getHeight()/3.5-120, imgEnemy));
+    gAssets.add(new Enemy( 610, stage.getHeight()/1.5-120, imgEnemy));
+    gAssets.add(new Enemy( 980, stage.getHeight()/1.5-120, imgEnemy));
+    gAssets.add(new Enemy(1100, stage.getHeight()/3.5-120, imgEnemy));
+    gAssets.add(new Enemy(1400, stage.getHeight()/3.5-120, imgEnemy));
     gAssets.add(new Enemy(1400, stage.getHeight()-135, imgEnemy));
-    gAssets.add(new Enemy(1550, stage.getHeight()/1.5-115, imgEnemy));
-    gAssets.add(new Enemy(1850, stage.getHeight()/1.5-115, imgEnemy));
+    gAssets.add(new Enemy(1550, stage.getHeight()/1.5-120, imgEnemy));
+    gAssets.add(new Enemy(1850, stage.getHeight()/1.5-120, imgEnemy));
     gAssets.add(new Enemy(1950, stage.getHeight()-135, imgEnemy));
-    gAssets.add(new Enemy(1950, stage.getHeight()/3.5-115, imgEnemy));
+    gAssets.add(new Enemy(1950, stage.getHeight()/3.5-120, imgEnemy));
     gAssets.add(new Enemy(2100, stage.getHeight()-135, imgEnemy));
-    gAssets.add(new Enemy(2350, stage.getHeight()/1.5-115, imgEnemy));
+    gAssets.add(new Enemy(2350, stage.getHeight()/1.5-120, imgEnemy));
     gAssets.add(new Enemy(2400, stage.getHeight()-135, imgEnemy));
-    gAssets.add(new Enemy(2650, stage.getHeight()/3.5-115, imgEnemy));
+    gAssets.add(new Enemy(2650, stage.getHeight()/3.5-120, imgEnemy));
     gAssets.add(new Enemy(2700, stage.getHeight()-135, imgEnemy));
     gAssets.add(new Enemy(3100, stage.getHeight()/1.5-170, imgEnemy));
     gAssets.add(new Enemy(3150, stage.getHeight()-135, imgEnemy));
     gAssets.add(new Enemy(3350, stage.getHeight()/3.5-185, imgEnemy));
-    gAssets.add(new Enemy(3750, stage.getHeight()/1.5-245, imgEnemy));
+    gAssets.add(new Enemy(3750, stage.getHeight()/1.5-250, imgEnemy));
     gAssets.add(new Enemy(3800, stage.getHeight()-135, imgEnemy));
 
     /* Dogs */
