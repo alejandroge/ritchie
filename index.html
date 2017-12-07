@@ -10,7 +10,7 @@
     <title>OXXO Game</title>
 </head>
 <body>
-    <div id="game">
+    <div>
         <div id="begin" class="screen">
             <p class="presentation">Un juego de <span class="logo">The Ritchie's</span></p>
             <div class="data">
@@ -19,6 +19,39 @@
                 <input type="button" class="botonimagen2" id="btnFemale" onclick="beginGame(2)">
                 <p>Elije a tu personaje</p>
             </div>
+        </div>
+    </div>
+    <div>
+        <div id="hist-1" class="hist">
+            <h1>- Voy a comprar al Oxxo, ¿Ocupas algo?</h1>
+            <h1>~ ¡Nombre! ¡¿no crees?! Ya es muy noche para ir...</h1>
+            <h1>- Si pues, pero iré rapido...</h1>
+            <h3>
+                Y así inicia nuestra historia ...
+            </h3>
+            <button type="button" name="button" onclick="pickCharacter()">¡Vamos!</button>
+            <h6>Cualquier parecido con la realidad es mera coincidencia</h6>
+        </div>
+    </div>
+    <div>
+        <div id="hist-2" class="hist">
+            <p>Voy a comprar al oxxo, ¿Ocupas algo?</p>
+            <p>¡Nombre! ¡¿no crees?! Ya es muy noche para ir...</p>
+            <p>Si pues, pero iré rapido...</p>
+        </div>
+    </div>
+    <div>
+        <div id="hist-3" class="hist">
+            <p>Voy a comprar al oxxo, ¿Ocupas algo?</p>
+            <p>¡Nombre! ¡¿no crees?! Ya es muy noche para ir...</p>
+            <p>Si pues, pero iré rapido...</p>
+        </div>
+    </div>
+    <div>
+        <div id="hist-4" class="hist">
+            <p>Voy a comprar al oxxo, ¿Ocupas algo?</p>
+            <p>¡Nombre! ¡¿no crees?! Ya es muy noche para ir...</p>
+            <p>Si pues, pero iré rapido...</p>
         </div>
     </div>
     <div id="game">
@@ -79,7 +112,37 @@
         function loadProgress(){
             if(p.progress == 1){
                 //firstLevel();
-                document.querySelector('#begin').style.display = 'block';
+                document.querySelector('#hist-1').style.display = 'block';
+            }
+        }
+        function pickCharacter() {
+            document.querySelector('#hist-1').style.display = 'none';
+            document.querySelector('#begin').style.display = 'block';
+        }
+        function Story(opt1) {
+            document.querySelector('#begin').style.display = 'none';
+            document.querySelector('#win').style.display = 'none';
+            document.querySelector('#game-over').style.display = 'none';
+            document.querySelector('#game').style.display = 'none';
+            document.querySelector('#hist-1').style.display = 'none';
+            document.querySelector('#hist-2').style.display = 'none';
+            document.querySelector('#hist-3').style.display = 'none';
+            document.querySelector('#hist-4').style.display = 'none';
+            switch (opt) {
+                case 1:
+                    document.querySelector('#hist-1').style.display = 'block';
+                    break;
+                case 2:
+                    document.querySelector('#hist-2').style.display = 'block';
+                    break;
+                case 3:
+                    document.querySelector('#hist-3').style.display = 'block';
+                    break;
+                case 4:
+                    document.querySelector('#hist-4').style.display = 'block';
+                    break;
+                case 5:
+                default:
             }
         }
         function beginGame(x){

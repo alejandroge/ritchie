@@ -18,8 +18,32 @@ h2 {
     background-image: url(../images/bg/cityscape_1.png);
     background-size: 100% 100%;
 }
+.hist {
+    display: none;
+    padding: 30px;
+    text-align: center;
+    width: 1220px;
+    height: 540px;
+    background-color: black;
+    background-size: 100% 100%;
+} .hist h3 {
+    color: white;
+    display: block;
+    margin-top: 150px;
+    overflow: hidden;
+} .hist button {
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    padding: 20px;
+} .hist button:hover {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    padding: 20px;
+}
 
-p {
+.screen p {
     margin: 0px;
     height: 350px;
     display: inline-block;
@@ -47,7 +71,7 @@ p {
     color: #ffffff;
 }
 
-p span {
+screen p span {
     height: 50px;
     line-height: 50px;
     vertical-align: middle;
