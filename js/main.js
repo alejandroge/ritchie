@@ -2,24 +2,33 @@ var stage, background, gAssets;
 var score;
 var keyboard = {
 };
-var intv;
+var intv, intb, th=0;
 var character;
 var grav = 9;
 var bounce_value = 0;
 var flag = false;
+var Selected = new Heroe(imgMale);
 var imgEnemy = new Image();
+var imgBoss = new Image();
 var imgMale = new Image();
 var imgFemale = new Image();
 var imgBG_1 = new Image();
 var imgBG_2 = new Image();
-
+var imgBG_3 = new Image();
+var imgDog = new Image();
 var imgCoin = new Image();
+var imgBottle = new Image();
+
 imgEnemy.src = 'images/CHOLO-BODY.png';
+imgBoss.src = 'images/BOSS-BODY.png';
 imgMale.src = 'images/MALE-BODY.png';
 imgFemale.src = 'images/FEMALE-BODY.png';
 imgBG_1.src = 'images/bg/cityscape_1.png';
 imgBG_2.src = 'images/bg/cityscape_2.png';
+imgBG_3.src = 'images/bg/cityscape_3.png';
 imgCoin.src = 'images/coin.png';
+imgBottle.src = 'images/bottle.png';
+imgDog.src = 'images/dog.png';
 
 var game = new Game();
 
@@ -46,6 +55,14 @@ bgImg_2 = new Kinetic.Image({
     x: 0,
     y: 0,
     image: imgBG_2,
+    width: stage.getWidth(),
+    height: stage.getHeight()
+});
+
+bgImg_3 = new Kinetic.Image({
+    x: 0,
+    y: 0,
+    image: imgBG_3,
     width: stage.getWidth(),
     height: stage.getHeight()
 });
@@ -131,9 +148,8 @@ function moveEnemies() {
     var enemies = gAssets.children;
     for(i in enemies){
         var enemy = enemies[i];
-        if(enemy instanceof Enemy){
+        if(enemy instanceof Enemy || enemy instanceof Dog)
             enemy.move(0);
-        }
     }
 }
 
@@ -141,12 +157,21 @@ function applyForces(){
     character.applyGravity(grav, bounce_value);
 }
 
+function applyForcesBottles() {
+    var assets = gAssets.children;
+    for (i in assets){
+        if (assets[i] instanceof Bottle) {
+            assets[i].applyThrow(grav);
+        }
+    }
+}
+
 function checkCollPlat(){
     var platforms = gAssets.children;
     for(i in platforms){
         var platform = platforms[i];
         if(collision(platform, character)){
-            if(platform instanceof Enemy) {
+            if(platform instanceof Enemy || platform instanceof Dog) {
                 if(character.vy > 2 && character.getY()<platform.getY()){
                     character.vy *= -0.8;
                     platform.remove();
@@ -159,6 +184,15 @@ function checkCollPlat(){
                     game.level=1;
                     flag = false;
                 }
+            }
+            else if(platform instanceof Bottle) {
+                gAssets.removeChildren();
+                document.querySelector('#game-over').style.display = 'block';
+                document.querySelector('#game').style.display = 'none';
+                window.clearInterval(intv);
+                window.clearInterval(intb);
+                game.level=1;
+                flag = false;
             }
             else if(platform instanceof Platform && character.getY() < platform.getY() && character.vy > 0){
                 character.count = 0;
@@ -181,6 +215,11 @@ function checkCollPlat(){
                     game.level = 3;
                     thirdLevel();
                 } else if(game.level == 3) {
+                    gAssets.removeChildren();
+                    window.clearInterval(intv);
+                    game.level = 4;
+                    bossLevel();
+                } else if(game.level == 4) {
                     console.log('Ganaste papu.');
                     gAssets.removeChildren();
                     document.querySelector('#win').style.display = 'block';
@@ -190,6 +229,7 @@ function checkCollPlat(){
                     game.level=1;
                     flag = false;
                 }
+
             }
         }
     }
@@ -208,4 +248,19 @@ function frameLoop () {
     moveCharacter();
     moveEnemies();
     stage.draw();
+}
+
+function frameLoopb () {
+    console.log("Hello");
+    applyForces();
+    applyForcesBottles();
+    updateText();
+    checkCollPlat();
+    moveCharacter();
+    moveEnemies();
+    stage.draw();
+}
+
+function bottleLoop() {
+    boss.throwBottle(boss.random(-60, 60), gAssets)
 }

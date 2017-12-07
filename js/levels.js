@@ -1,5 +1,3 @@
-var Selected = new Heroe(imgMale);
-
 function firstLevel(x) {
     game.score = 0;
     if(flag) return;
@@ -11,9 +9,8 @@ function firstLevel(x) {
     gAssets.add(new Enemy(200, stage.getHeight()-135, imgEnemy));
     gAssets.add(new Enemy(850, stage.getHeight()-135, imgEnemy));
     gAssets.add(new Enemy(550, stage.getHeight()-135, imgEnemy));
-    gAssets.add(new Enemy(550, stage.getHeight()/1.5-135, imgEnemy));
-    gAssets.add(new Enemy(190, stage.getHeight()/3-135, imgEnemy));
-
+    gAssets.add(new Enemy(550, stage.getHeight()/1.5-120, imgEnemy));
+    gAssets.add(new Enemy(190, stage.getHeight()/3-120, imgEnemy));
 
     /* Platforms */
     var floor = new Platform(0, stage.getHeight()-15);
@@ -21,7 +18,7 @@ function firstLevel(x) {
     gAssets.add(floor);
     gAssets.add(new Platform(20, stage.getHeight()/1.5));
     gAssets.add(new Platform(190, stage.getHeight()/3));
-    gAssets.add(new Platform(600, stage.getHeight()/1.5));
+    gAssets.add(new Platform(550, stage.getHeight()/1.5));
 
     /* Coins */
     gAssets.add(new Coin(350, stage.getHeight()/3-150, imgCoin));
@@ -46,7 +43,6 @@ function firstLevel(x) {
 }
 
 function secondLevel() {
-    character = Selected;
     background = new Kinetic.Layer();
     game.key = true;
     console.log('Bienvenido al segundo nivel.');
@@ -59,10 +55,15 @@ function secondLevel() {
    gAssets.add(new Enemy(910, stage.getHeight()-128, imgEnemy));
    gAssets.add(new Enemy(1210, stage.getHeight()-128, imgEnemy));
    gAssets.add(new Enemy(1410, stage.getHeight()-128, imgEnemy));
-    gAssets.add(new Enemy(810, stage.getHeight()/3.5-128, imgEnemy));
+   gAssets.add(new Enemy(810, stage.getHeight()/3.5-128, imgEnemy));
    gAssets.add(new Enemy(1110, stage.getHeight()/1.5-128, imgEnemy));
    gAssets.add(new Enemy(1310, stage.getHeight()/3.5-128, imgEnemy));
    gAssets.add(new Enemy(1610, stage.getHeight()/1.25-150, imgEnemy));
+
+   /* Dogs */
+   gAssets.add(new Dog(1200, stage.getHeight() - 75, imgDog));
+   gAssets.add(new Dog(2000, stage.getHeight() - 75, imgDog));
+
    /* Platforms */
    var floor = new Platform(0, stage.getHeight()-15);
    floor.setWidth(stage.getWidth()*2);
@@ -100,7 +101,6 @@ function secondLevel() {
 }
 
 function thirdLevel() {
-    character = Selected;
     background = new Kinetic.Layer();
     game.key = true;
     console.log('Bienvenido al Ultimo nivel.');
@@ -129,6 +129,11 @@ function thirdLevel() {
     gAssets.add(new Enemy(3750, stage.getHeight()/1.5-245, imgEnemy));
     gAssets.add(new Enemy(3800, stage.getHeight()-135, imgEnemy));
 
+    /* Dogs */
+    gAssets.add(new Dog(1200, stage.getHeight() - 75, imgDog));
+    gAssets.add(new Dog(2000, stage.getHeight() - 75, imgDog));
+    gAssets.add(new Dog(3200, stage.getHeight() - 75, imgDog));
+    gAssets.add(new Dog(4200, stage.getHeight() - 75, imgDog));
 
     /* Platforms */
     var floor = new Platform(0, stage.getHeight()-15);
@@ -178,4 +183,47 @@ function thirdLevel() {
     stage.add(background);
 
     intv = setInterval(frameLoop, 1000/20);
+}
+
+function bossLevel() {
+    character = Selected;
+    background = new Kinetic.Layer();
+    game.key = true;
+    console.log('Bienvenido al nivel del jefe.');
+
+    /* Boss */
+    boss = new Boss(620, stage.getHeight()/1.3-170, imgBoss);
+
+    /* Enemies */
+    gAssets.add(new Enemy(130, stage.getHeight()/1.3-170, imgEnemy));
+    gAssets.add(new Enemy(950, stage.getHeight()/1.3-170, imgEnemy));
+
+    /* Dogs */
+    gAssets.add(new Dog(1200, stage.getHeight() - 75, imgDog));
+    gAssets.add(new Dog(2000, stage.getHeight() - 75, imgDog));
+    gAssets.add(new Dog(3200, stage.getHeight() - 75, imgDog));
+    gAssets.add(new Dog(4200, stage.getHeight() - 75, imgDog));
+
+    /* Platforms */
+    var floor = new Platform(0, stage.getHeight()-15);
+    floor.setWidth(stage.getWidth());
+    gAssets.add(floor);
+    gAssets.add(new Platform(130, stage.getHeight()/1.3-50));
+    gAssets.add(new Platform(550, stage.getHeight()/1.3-50));
+    gAssets.add(new Platform(950, stage.getHeight()/1.3-50));
+
+
+    character.setX(0);
+    character.setY(stage.getHeight()-character.getHeight());
+    character.rightLimit = stage.getWidth() - character.getWidth();
+    character.topLimit = stage.getHeight()-15;
+    background.add(bgImg_3);
+    background.add(character);
+    background.add(boss);
+    background.add(gAssets);
+    background.add(score);
+    stage.add(background);
+
+    intb = setInterval(bottleLoop, 20000/20);
+    intv = setInterval(frameLoopb, 1000/20);
 }
