@@ -235,6 +235,31 @@ function checkCollPlat(){
     }
 }
 
+function checkColBoss() {
+    if(collision(boss, character)){
+        if(character.vy > 2 && character.getY()<boss.getY()){
+            character.vy *= -0.8;
+            boss.remove();
+            console.log('Ganaste papu.');
+            gAssets.removeChildren();
+            document.querySelector('#win').style.display = 'block';
+            document.querySelector('#game').style.display = 'none';
+            document.querySelector('#score').innerHTML = game.score;
+            window.clearInterval(intv);
+            window.clearInterval(intb);
+            game.level=1;
+            flag = false;
+        }else {
+            gAssets.removeChildren();
+            document.querySelector('#game-over').style.display = 'block';
+            document.querySelector('#game').style.display = 'none';
+            window.clearInterval(intv);
+            game.level=1;
+            flag = false;
+        }
+    }
+}
+
 function updateText () {
     score.setText('Puntaje: '+game.score);
 }
@@ -256,6 +281,7 @@ function frameLoopb () {
     applyForcesBottles();
     updateText();
     checkCollPlat();
+    checkColBoss();
     moveCharacter();
     moveEnemies();
     stage.draw();

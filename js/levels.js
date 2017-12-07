@@ -186,7 +186,6 @@ function thirdLevel() {
 }
 
 function bossLevel() {
-    character = Selected;
     background = new Kinetic.Layer();
     game.key = true;
     console.log('Bienvenido al nivel del jefe.');
