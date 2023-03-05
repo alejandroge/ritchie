@@ -13,7 +13,7 @@ function firstLevel(x) {
     gAssets.add(new Enemy(190, stage.getHeight()/3-120, imgEnemy));
 
     /* Platforms */
-    var floor = new Platform(0, stage.getHeight()-15);
+    const floor = new Platform(0, stage.getHeight()-15);
     floor.setWidth(stage.getWidth()*2);
     gAssets.add(floor);
     gAssets.add(new Platform(20, stage.getHeight()/1.5));
@@ -65,7 +65,7 @@ function secondLevel() {
    gAssets.add(new Dog(2000, stage.getHeight() - 75, imgDog));
 
    /* Platforms */
-   var floor = new Platform(0, stage.getHeight()-15);
+   const floor = new Platform(0, stage.getHeight()-15);
    floor.setWidth(stage.getWidth()*2);
    gAssets.add(floor);
    gAssets.add(new Platform(90, stage.getHeight()/1.5));
@@ -136,7 +136,7 @@ function thirdLevel() {
     gAssets.add(new Dog(4200, stage.getHeight() - 75, imgDog));
 
     /* Platforms */
-    var floor = new Platform(0, stage.getHeight()-15);
+    const floor = new Platform(0, stage.getHeight()-15);
     floor.setWidth(stage.getWidth()*4);
     gAssets.add(floor);
     gAssets.add(new Platform(90, stage.getHeight()/1.5));
@@ -204,7 +204,7 @@ function bossLevel() {
     gAssets.add(new Dog(4200, stage.getHeight() - 75, imgDog));
 
     /* Platforms */
-    var floor = new Platform(0, stage.getHeight()-15);
+    const floor = new Platform(0, stage.getHeight()-15);
     floor.setWidth(stage.getWidth());
     gAssets.add(floor);
     gAssets.add(new Platform(130, stage.getHeight()/1.3-50));

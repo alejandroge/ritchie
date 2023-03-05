@@ -99,36 +99,27 @@ h1.notice {
     cursor: pointer;
 }
 
-.botonimagen1 {
+.button-image {
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
     overflow: hidden;
-    background-image: url(../images/MALE-HEAD.png);
-    background: -repeat: no-repeat;
     height: 255px;
     width: 255px;
     background-position: center;
-} .botonimagen1:hover{
-    background-image: url(../images/MALE-HEAD2.jpg);
-    color: #222;
+}
+
+.button-image:hover {
+    background-color: rgba(100, 0, 0, 0.5);
+    border-radius: 10%;
     cursor: pointer;
 }
 
-.botonimagen2 {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
+#btnMale {
+    background-image: url(../images/MALE-HEAD.png);
+}
+
+#btnFemale {
     background-image: url(../images/FEMALE-HEAD.png);
-    background: -repeat: no-repeat;
-    height: 255px;
-    width: 255px;
-    background-position: center;
-} .botonimagen2:hover {
-    background-image: url(../images/FEMALE-HEAD2.jpg);
-    color: #222;
-    cursor: pointer;
 }

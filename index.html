@@ -15,8 +15,8 @@
             <p class="presentation">Un juego de <span class="logo">The Ritchie's</span></p>
             <div class="data">
                 <h2>Bienvenido a OXXO Game</h2>
-                <input type="button" class="botonimagen1" id="btnMale" onclick="beginGame(1)">
-                <input type="button" class="botonimagen2" id="btnFemale" onclick="beginGame(2)">
+                <input type="button" class="button-image" id="btnMale" onclick="beginGame(1)">
+                <input type="button" class="button-image" id="btnFemale" onclick="beginGame(2)">
                 <p>Elije a tu personaje</p>
             </div>
         </div>
@@ -31,27 +31,6 @@
             </h3>
             <button type="button" name="button" onclick="pickCharacter()">¡Vamos!</button>
             <h6>Cualquier parecido con la realidad es mera coincidencia</h6>
-        </div>
-    </div>
-    <div>
-        <div id="hist-2" class="hist">
-            <p>Voy a comprar al oxxo, ¿Ocupas algo?</p>
-            <p>¡Nombre! ¡¿no crees?! Ya es muy noche para ir...</p>
-            <p>Si pues, pero iré rapido...</p>
-        </div>
-    </div>
-    <div>
-        <div id="hist-3" class="hist">
-            <p>Voy a comprar al oxxo, ¿Ocupas algo?</p>
-            <p>¡Nombre! ¡¿no crees?! Ya es muy noche para ir...</p>
-            <p>Si pues, pero iré rapido...</p>
-        </div>
-    </div>
-    <div>
-        <div id="hist-4" class="hist">
-            <p>Voy a comprar al oxxo, ¿Ocupas algo?</p>
-            <p>¡Nombre! ¡¿no crees?! Ya es muy noche para ir...</p>
-            <p>Si pues, pero iré rapido...</p>
         </div>
     </div>
     <div id="game">
@@ -91,34 +70,52 @@
     <script src="js/levels.js"></script>
     <script src="js/game.js"></script>
     <script>
-        var p;
-        var imgAssets = ['images/bottle.png','images/dog.png','images/CHOLO-BODY.png','images/BOSS-BODY.png','images/coin.png','images/bg/cityscape_1.png','images/bg/cityscape_2.png','images/bg/cityscape_3.png','images/MALE-BODY.png','images/MALE-HEAD.png', 'images/male.png', 'images/FEMALE-HEAD.png', 'images/FEMALE-BODY.png'];
-        window.addEventListener('load', function(){
-            p = new PreloadJS();
-            p.onProgress = loadProgress;
-            load();
-            var starters = document.getElementsByClassName('start');
+        let preloadJs;
+        const imgAssets = [
+            'images/bottle.png',
+            'images/dog.png',
+            'images/CHOLO-BODY.png',
+            'images/BOSS-BODY.png',
+            'images/coin.png',
+            'images/bg/cityscape_1.png',
+            'images/bg/cityscape_2.png',
+            'images/bg/cityscape_3.png',
+            'images/MALE-BODY.png',
+            'images/MALE-HEAD.png',
+            'images/FEMALE-HEAD.png',
+            'images/FEMALE-BODY.png'
+        ];
+
+        window.addEventListener('load', function() {
+            preloadJs = new PreloadJS();
+            preloadJs.onProgress = loadProgress;
+            preloadAssets();
+            let starters = document.getElementsByClassName('start');
             for (i in starters) {
-                var button = starters[i];
+                let button = starters[i];
                 button.addEventListener('click', beginGame);
             }
         });
-        function load(){
+
+        function preloadAssets() {
             while(imgAssets.length > 0){
-                var url = imgAssets.shift();
-                p.loadFile(url);
+                let url = imgAssets.shift();
+                preloadJs.loadFile(url);
             }
         }
-        function loadProgress(){
-            if(p.progress == 1){
+
+        function loadProgress() {
+            if(preloadJs.progress == 1) {
                 //firstLevel();
                 document.querySelector('#hist-1').style.display = 'block';
             }
         }
+
         function pickCharacter() {
             document.querySelector('#hist-1').style.display = 'none';
             document.querySelector('#begin').style.display = 'block';
         }
+
         function Story(opt1) {
             document.querySelector('#begin').style.display = 'none';
             document.querySelector('#win').style.display = 'none';
@@ -145,7 +142,8 @@
                 default:
             }
         }
-        function beginGame(x){
+
+        function beginGame(x) {
             document.querySelector('#begin').style.display = 'none';
             document.querySelector('#win').style.display = 'none';
             document.querySelector('#game-over').style.display = 'none';

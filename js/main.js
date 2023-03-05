@@ -1,7 +1,8 @@
-var stage, background, gAssets;
+var background, gAssets;
 var score;
 var keyboard = {
 };
+
 var intv, intb, th=0;
 var character;
 var grav = 9;
@@ -30,14 +31,18 @@ imgCoin.src = 'images/coin.png';
 imgBottle.src = 'images/bottle.png';
 imgDog.src = 'images/dog.png';
 
-var game = new Game();
+const ARROW_BACK = 37;
+const ARROW_FORWARD = 39;
+const ARROW_UP = 38;
+
+const game = new Game();
 
 gAssets = new Kinetic.Group({
     x: 0,
     y: 0
 });
 
-stage = new Kinetic.Stage({
+const stage = new Kinetic.Stage({
     container: 'game',
     width: 1280,
     height: 600
@@ -79,13 +84,13 @@ score = new Kinetic.Text({
 });
 
 function moveCharacter() {
-    if(keyboard[37]) {
+    if(keyboard[ARROW_BACK]) {
         character.walkBack();
     }
-    if(keyboard[39]) {
+    if(keyboard[ARROW_FORWARD]) {
         character.walkForward();
     }
-    if(keyboard[38] && character.count < 2) {
+    if(keyboard[ARROW_UP] && character.count < 2) {
         character.jump();
     }
 }
@@ -109,7 +114,7 @@ function addKeyBoardEvents() {
 }
 
 function collision (a,b) {
-    var hit = false;
+    let hit = false;
 
     // Horizontal collisions
     if(b.getX()+b.getWidth() >= a.getX() && b.getX() < a.getX()+a.getWidth()){
@@ -131,12 +136,13 @@ function collision (a,b) {
     return hit;
 }
 
-function moveBground(){
-    if(character.getX() > (stage.getWidth()/2) && keyboard[39]){
+function moveBground() {
+    const characterFurtherThanHalfOfTheStage = () => character.getX() > (stage.getWidth() / 2);
+    if (characterFurtherThanHalfOfTheStage() && keyboard[ARROW_FORWARD]) {
         character.vx = 0;
         assets = gAssets.children;
-        for(i in assets) {
-            var asset = gAssets.children[i];
+        for (i in assets) {
+            let asset = gAssets.children[i];
             asset.move(-8, 0);
         }
     } else {
@@ -145,9 +151,9 @@ function moveBground(){
 }
 
 function moveEnemies() {
-    var enemies = gAssets.children;
+    let enemies = gAssets.children;
     for(i in enemies){
-        var enemy = enemies[i];
+        let enemy = enemies[i];
         if(enemy instanceof Enemy || enemy instanceof Dog)
             enemy.move(0);
     }
@@ -158,7 +164,7 @@ function applyForces(){
 }
 
 function applyForcesBottles() {
-    var assets = gAssets.children;
+    let assets = gAssets.children;
     for (i in assets){
         if (assets[i] instanceof Bottle) {
             assets[i].applyThrow(grav);
@@ -167,16 +173,16 @@ function applyForcesBottles() {
 }
 
 function checkCollPlat(){
-    var platforms = gAssets.children;
-    for(i in platforms){
-        var platform = platforms[i];
-        if(collision(platform, character)){
-            if(platform instanceof Enemy || platform instanceof Dog) {
-                if(character.vy > 2 && character.getY()<platform.getY()){
+    let platforms = gAssets.children;
+    for (i in platforms) {
+        let platform = platforms[i];
+        if (collision(platform, character)){
+            if (platform instanceof Enemy || platform instanceof Dog) {
+                if (character.vy > 2 && character.getY()<platform.getY()){
                     character.vy *= -0.8;
                     platform.remove();
                     game.score += 5;
-                }else {
+                } else {
                     gAssets.removeChildren();
                     document.querySelector('#game-over').style.display = 'block';
                     document.querySelector('#game').style.display = 'none';
@@ -185,7 +191,7 @@ function checkCollPlat(){
                     flag = false;
                 }
             }
-            else if(platform instanceof Bottle) {
+            else if (platform instanceof Bottle) {
                 gAssets.removeChildren();
                 document.querySelector('#game-over').style.display = 'block';
                 document.querySelector('#game').style.display = 'none';
@@ -194,17 +200,17 @@ function checkCollPlat(){
                 game.level=1;
                 flag = false;
             }
-            else if(platform instanceof Platform && character.getY() < platform.getY() && character.vy > 0){
+            else if (platform instanceof Platform && character.getY() < platform.getY() && character.vy > 0) {
                 character.count = 0;
                 character.setY(platform.getY() - character.getHeight());
                 character.vy *= bounce_value;
             }
-            else if(platform instanceof Coin) {
+            else if (platform instanceof Coin) {
                 platform.remove();
                 game.score += 1;
             }
-            else if(platform instanceof Door && game.key) {
-                if(game.level == 1) {
+            else if (platform instanceof Door && game.key) {
+                if (game.level == 1) {
                     gAssets.removeChildren();
                     window.clearInterval(intv);
                     game.level = 2;
@@ -214,12 +220,12 @@ function checkCollPlat(){
                     window.clearInterval(intv);
                     game.level = 3;
                     thirdLevel();
-                } else if(game.level == 3) {
+                } else if (game.level == 3) {
                     gAssets.removeChildren();
                     window.clearInterval(intv);
                     game.level = 4;
                     bossLevel();
-                } else if(game.level == 4) {
+                } else if (game.level == 4) {
                     console.log('Ganaste papu.');
                     gAssets.removeChildren();
                     document.querySelector('#win').style.display = 'block';
